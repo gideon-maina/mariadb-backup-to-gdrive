@@ -10,6 +10,7 @@ The library has these components
 You can configure the service to run according to your set up by modifying the `config.py` file
 ### The options are 
 The parent folder you want to upload to, copy this from the URL when looking at the folder in the Web
+
 `GDRIVE_PARENTS = ["Id_of_a_google_drive_folder"]`
 
 The db params
