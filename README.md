@@ -14,6 +14,7 @@ The parent folder you want to upload to, copy this from the URL when looking at 
 `GDRIVE_PARENTS = ["Id_of_a_google_drive_folder"]`
 
 The db params
+
 `DB_USER = "root"`
 
 `DB_PASSWORD = "admin"`
@@ -39,6 +40,10 @@ You can deploy this service to your server using the ansible roles in the repo
 - First create your `ansible/deploy/group_vars/server.yml` from the sample `ansible/deploy/group_vars/server_sample.yml`
 - Then update the `ansible/deploy/prod_inventory` with the just created server details
 - Run the ansible tasks `$ ansible-playbook -i ansible/deploy/prod_inventory ansible/deploy/appserver.yml`
+
+# Supervisor
+The service is run by a supervisor job called `mariadb_backup_service` which is installed and set up by the ansible run.
+You may need to install `supervisor` and other os packages on the target server as this ansible role does not have tasks to install packages.
 
 # Note
 You will need to create a folder or grant permission to the `service user` for the google drive folder you want
