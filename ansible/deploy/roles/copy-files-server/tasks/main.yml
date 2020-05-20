@@ -1,0 +1,22 @@
+---
+- name: Ensure target directory is present
+  file:
+      path: "{{ target_service_directory }}"
+      state: directory
+      owner: "{{ ansible_user }}"
+
+- name: Copy the app files
+  synchronize:
+      src: "{{ source_directory }}"
+      dest: "{{ target_service_directory }}"
+      rsync_opts:
+          - "--no-motd"
+          - "--exclude=.git"
+          - "--exclude=*.swp"
+
+- name: Copy the supervisor files to target location on server apps production
+  synchronize:
+      src: "{{ target_service_directory }}/supervisor/mariadb_backup.ini"
+      dest: /etc/supervisor/conf.d/mariadb_backup.conf
+  delegate_to: "{{ address }}"
+

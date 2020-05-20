@@ -1,0 +1,6 @@
+[app1]
+X.XX.XX.XX
+[vagrantapp1]
+172.28.128.3
+[localsystem]
+127.0.0.1 ansible_connection=local

@@ -1,9 +1,12 @@
 import logging
+import time
+
+import schedule
 
 from backup_lib.gdrive import GDrive
 from backup_lib.backup import MariaDBBackup
 from config import (DB_USER, DB_PASSWORD, GDRIVE_PARENTS, DBS_TO_BACKUP,
-                    SERVICE_ACCOUNT_FILE, TARGET_DIRECTORY)
+                    TIME_TO_BACKUP, SERVICE_ACCOUNT_FILE, TARGET_DIRECTORY)
 
 logger = logging.getLogger("MariaDB backup process")
 logger.setLevel(logging.INFO)
@@ -11,8 +14,10 @@ handler = logging.StreamHandler()
 formatter = logging.Formatter('%(asctime)s %(name)s %(levelname)s %(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
+logger.info("Starting...")
 
-if __name__ == "__main__":
+
+def backup_and_upload():
     gdrive = GDrive(logger, SERVICE_ACCOUNT_FILE)
     mbackup = MariaDBBackup(logger, DB_USER, DB_PASSWORD, TARGET_DIRECTORY)
     back_ups_to_upload = set()
@@ -30,4 +35,10 @@ if __name__ == "__main__":
         logger.info("Done backing up and uplaoding")
     except Exception as e:
         logger.exception(f"Could not complete successfully :> {e}")
-        exit(1)
+
+
+# Run the backup only once every day at given time
+schedule.every().day.at(TIME_TO_BACKUP).do(backup_and_upload)
+while True:
+    schedule.run_pending()
+    time.sleep(1)

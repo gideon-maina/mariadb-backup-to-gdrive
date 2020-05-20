@@ -1,0 +1,8 @@
+---
+address: X.X.X.X
+ansible_user: server_user
+ansible_become_user: root
+ansible_become_pass: server_user_pass
+source_directory: "local source directory"
+target_service_directory: "/usr/local/lib/maridb-backup-service/"
+target_service_log_directory: "/var/log/mariadb-backup-service/"

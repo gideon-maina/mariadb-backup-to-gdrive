@@ -17,7 +17,7 @@ class MariaDBBackup():
         Backup given database and return the file backup to
         """
         host_name = os.uname().nodename
-        timestamp = time.strftime('%Y_%b_%d_%I_%M')
+        timestamp = time.strftime('%Y_%b_%d_%H_%M')
         target_backup_file = os.path.join(
             self.target_directory,
             f"{database_name}_host_{host_name}_backup_at_{timestamp}.sql.gz")

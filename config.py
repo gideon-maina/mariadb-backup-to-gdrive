@@ -6,6 +6,7 @@ DB_USER = "root"
 DB_PASSWORD = "admin"
 DBS_TO_BACKUP = ['farmit', 'blog_db']
 # This should be a path to the client secrets file assumed to be in the current folder
-SERVICE_ACCOUNT_FILE = 'client_secrets.json'
+SERVICE_ACCOUNT_FILE = '/usr/local/lib/maridb-backup-service/client_secrets.json'
 # The target directory to store your database backups
 TARGET_DIRECTORY = '/tmp/'
+TIME_TO_BACKUP = "03:00"

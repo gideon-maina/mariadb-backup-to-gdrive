@@ -1,0 +1,18 @@
+---
+- name: Ensure supervisor jobs log directory is present
+  file:
+      path: "{{ target_service_log_directory}}"
+      state: directory
+      owner: "{{ ansible_user }}"
+
+- name: Ensure all Python3 dependencies are set up
+  pip:
+      requirements: "{{ target_service_directory }}requirements.txt"
+      virtualenv: /usr/local/lib/maridb-backup-service/.venv/ # This can't use a variable see ansible issue 22967
+      virtualenv_python: python3
+
+- name: Install the mariadb backup listener service and restart it
+  supervisorctl:
+      name: mariadb_backup_service
+      state: restarted
+

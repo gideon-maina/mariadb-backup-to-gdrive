@@ -1,0 +1,9 @@
+---
+- name: Copy files for the app and set up local and remote services
+  hosts: app1
+  become: true
+  become_method: sudo
+
+  roles:
+      - copy-files-server
+      - supervisor-server-apps
