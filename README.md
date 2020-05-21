@@ -54,3 +54,6 @@ You will need to create a folder or grant permission to the `service user` for t
 your backups to be uploaded to
 
 # Blog post for this repo
+
+# TODO
+Add more notifications methods and allow notifcations for process output updates
