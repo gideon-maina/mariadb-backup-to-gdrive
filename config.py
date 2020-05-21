@@ -10,3 +10,5 @@ SERVICE_ACCOUNT_FILE = '/usr/local/lib/maridb-backup-service/client_secrets.json
 # The target directory to store your database backups
 TARGET_DIRECTORY = '/tmp/'
 TIME_TO_BACKUP = "03:00"
+# The number of backup files to keep for a database
+LATEST_BACKUPS_TO_KEEP = 5

@@ -6,7 +6,8 @@ import schedule
 from backup_lib.gdrive import GDrive
 from backup_lib.backup import MariaDBBackup
 from config import (DB_USER, DB_PASSWORD, GDRIVE_PARENTS, DBS_TO_BACKUP,
-                    TIME_TO_BACKUP, SERVICE_ACCOUNT_FILE, TARGET_DIRECTORY)
+                    TIME_TO_BACKUP, SERVICE_ACCOUNT_FILE, TARGET_DIRECTORY,
+                    LATEST_BACKUPS_TO_KEEP)
 
 logger = logging.getLogger("MariaDB backup process")
 logger.setLevel(logging.INFO)
@@ -32,7 +33,12 @@ def backup_and_upload():
         for back_up_file in back_ups_to_upload:
             gdrive.upload_file(back_up_file, GDRIVE_PARENTS)
 
-        logger.info("Done backing up and uplaoding")
+        logger.info("Now deleting stale backups")
+        gdrive.delete_backup_files(DBS_TO_BACKUP, LATEST_BACKUPS_TO_KEEP)
+
+        # logger.info("Sending notifications")
+        # notifier = EmailNotifier()
+        # notifier.notify(message=message, to=recipients)
     except Exception as e:
         logger.exception(f"Could not complete successfully :> {e}")
 

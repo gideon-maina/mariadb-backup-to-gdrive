@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 *.swp
 app1.yml
+client_secrets.json
