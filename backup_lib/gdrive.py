@@ -59,10 +59,10 @@ class GDrive():
         versions = defaultdict(list)
         for db in databases:
             db_prefix = self.get_db_prefix(db)
-        for f in service_account_files:
-            if f['mimeType'] != 'application/vnd.google-apps.folder' and f[
-                    'name'].startswith(db_prefix):
-                versions[db].append(f['id'])
+            for f in service_account_files:
+                if f['mimeType'] != 'application/vnd.google-apps.folder' and f[
+                        'name'].startswith(db_prefix):
+                    versions[db].append(f['id'])
         return versions
 
     def delete_backup_files(self, databases, remain_with_latest_n=5):
@@ -99,5 +99,5 @@ class GDrive():
                     self.gdrive_resource.files().emptyTrash().execute())
             else:
                 self.logger.info(
-                    f"There are currently the desired backup files :> {number_of_current_files}, for db :> {db.split('_')[0]}"
+                    f"There are currently the desired backup files :> {number_of_current_files}, for db :> {db.split('_host_')[0]}"
                 )
