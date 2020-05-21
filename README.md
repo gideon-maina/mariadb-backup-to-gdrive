@@ -34,6 +34,9 @@ The time to run the database backup default below
 
 `TIME_TO_BACKUP = "03:00"`
 
+The number of latest n backups for a database to keep
+`LATEST_BACKUPS_TO_KEEP = 5`
+
 # Deployment
 You can deploy this service to your server using the ansible roles in the repo
 
