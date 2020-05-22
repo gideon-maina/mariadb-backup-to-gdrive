@@ -35,7 +35,7 @@ class GMailNotifier(BaseNotification):
 
     def notify(self, message, destination):
         rfc_2822_message = MIMEText(message)
-        # if we have a list of emails then expand themdd`
+        # if we have a list of emails then expand them`
         if isinstance(destination, list):
             rfc_2822_message['to'] = ",".join(destination)
         else:
