@@ -38,6 +38,26 @@ The number of latest n backups for a database to keep
 
 `LATEST_BACKUPS_TO_KEEP = 5`
 
+The gmail email that created the app password
+
+`GMAIL_USER = ""`
+
+The app password
+
+`GMAIL_PASSWORD = ""`
+
+The from email to be used for the email notification
+
+`FROM_EMAIL = GMAIL_USER`
+
+The email notification subject
+
+`BACKUP_EMAIL_SUBJECT = "MariaDB Backup Service Notification"`
+
+The addresses to receive the notifications, can also be a single str
+
+`NOTIFICATION_EMAIL_DESTINATION = ['xxx@gmail.com']`
+
 # Deployment
 You can deploy this service to your server using the ansible roles in the repo
 
@@ -52,6 +72,8 @@ You may need to install `supervisor` and other os packages on the target server 
 # Note
 You will need to create a folder or grant permission to the `service user` for the google drive folder you want
 your backups to be uploaded to
+
+Using the GMAIL API to send email requires a G-suite account so might not be fit for those using the free gmail account. As a result the notifier in this repo uses the `smtplib` to send the email notifications.
 
 # Blog post for this repo
 
