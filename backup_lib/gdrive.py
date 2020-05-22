@@ -39,10 +39,11 @@ class GDrive():
         try:
             created_file = self.gdrive_resource.files().create(
                 body=file_to_create_body, media_body=file_path).execute()
-            self.logger.info(
+            msg = (
                 f"Created the file {created_file['name']}, with id {created_file['id']} in the parent google drives."
             )
-
+            self.logger.info(msg)
+            return msg
         except Exception as e:
             self.logger.exception(f"Failed to create a file error :> {e}")
             raise
