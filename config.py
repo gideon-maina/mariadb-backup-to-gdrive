@@ -1,3 +1,4 @@
+import os
 # The parent folder you want to upload to
 # Copy this from the URL when looking at the folder in the Web
 GDRIVE_PARENTS = ["15DgirpJA-Z2O-DNz_iHd3DjoYwLyP3Gu"]
@@ -6,7 +7,7 @@ DB_USER = "root"
 DB_PASSWORD = "admin"
 DBS_TO_BACKUP = ['farmit', 'blog_db']
 # This should be a path to the client secrets file assumed to be in the current folder
-SERVICE_ACCOUNT_FILE = 'client_secrets.json'
+SERVICE_ACCOUNT_FILE = '/usr/local/lib/maridb-backup-service/client_secrets.json'
 # The target directory to store your database backups
 TARGET_DIRECTORY = '/tmp/'
 TIME_TO_BACKUP = "03:00"
@@ -19,6 +20,7 @@ GMAIL_PASSWORD = ""
 # The from email to be used for the email notification
 FROM_EMAIL = GMAIL_USER
 # The email notification subject
-BACKUP_EMAIL_SUBJECT = "MariaDB Backup Service Notification"
+host_name = os.uname().nodename
+BACKUP_EMAIL_SUBJECT = f"MariaDB Backup Service Notification : Host {host_name}"
 # The addresses to receive the notifications, can also be a single str
 NOTIFICATION_EMAIL_DESTINATION = ['xxx@gmail.com']

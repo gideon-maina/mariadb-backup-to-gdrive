@@ -6,3 +6,9 @@ ansible_become_pass: server_user_pass
 source_directory: "local source directory"
 target_service_directory: "/usr/local/lib/maridb-backup-service/"
 target_service_log_directory: "/var/log/mariadb-backup-service/"
+# You will need to enable rsync to run with elevated priviledges on the remote hosts
+# do this by using the visudo command and adding
+#
+# ### CUSTOM ####
+# Limited run of rsync to enable ansible to run without tty
+# <your_remote_user_name> ALL=NOPASSWD: /usr/bin/rsync
